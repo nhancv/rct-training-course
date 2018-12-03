@@ -332,8 +332,7 @@ export const reducer = createReducer(INITIAL_STATE, {
 ```
 /* ------------- Assemble The Reducers ------------- */
 export const reducers = combineReducers({
-  nav: require('./NavigationRedux').reducer,
-  github: require('./GithubRedux').reducer,
+  ....
   search: require('./SearchRedux').reducer,
   demo: require('../Containers/Demo/Demo.Reducer').reducer
   /* Reducer here */
@@ -420,11 +419,13 @@ npm version
 # New version
 npm version <new version>
 ```
-- Run with different Env by running
+- Run with different Env. First create new environment file `.env.ENVIRONMENT_NAME`. Ex: `.env.staging`, `.env.live`, ... Then running
 ```
 ENVIRONMENT=staging
 export ENVFILE=.env.${ENVIRONMENT} && react-native run-android
 ```
+
+Look the new env updated on toolbar.
 
 #### Understand App Module
 
