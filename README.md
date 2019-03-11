@@ -42,10 +42,6 @@ Put snipcode below to `<View style={MainStyles.center}>` in `App/Containers/Main
   <Image style={{ width: 50, height: 50 }} source={require('../../Images/launch-icon.png')} />
   <Image
     style={{ width: 50, height: 50 }}
-    source={{ uri: 'http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-check-icon.png' }}
-  />
-  <Image
-    style={{ width: 50, height: 50 }}
     source={{ uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png' }}
   />
   <Image
@@ -334,24 +330,35 @@ export const reducer = createReducer(INITIAL_STATE, {
 export const reducers = combineReducers({
   ....
   search: require('./SearchRedux').reducer,
-  demo: require('../Containers/Demo/Demo.Reducer').reducer
   /* Reducer here */
+  //@nhancv 2019-03-11
+  //TODO: Add Reducer here
+  demo: require('../Containers/Demo/Demo.Reducer').reducer
+
 })
 ```
 + File: `App/Sagas/index.js`
 ```
 /* ------------ REDUX ------------ */
+//@nhancv 2019-03-11
+//TODO: Add REDUX here: Action, Function, Service
 import DemoActionCode, { DemoLogicFunc, DemoServices} from '../Containers/Demo/Demo.Reducer'
 
-.....
 
-	// some sagas receive extra parameters in addition to an action
-    takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api),
 
-    // Demo redux flow
+/* ------------- Connect Types To Sagas ------------- */
+
+export default function * root () {
+  yield all([
+    // some sagas only receive an action
+    takeLatest(StartupTypes.STARTUP, startup),
+
+    //@nhancv 2019-03-11
+    //TODO: redux flow configuration
     takeLatest(DemoActionCode.REST_API_REQUEST, DemoLogicFunc.getRestData, DemoServices),
     takeLatest(DemoActionCode.FAKE_DATA_REQUEST, DemoLogicFunc.getFakeData, DemoServices)
-.....
+  ])
+}
 
 ```
 - Step 5: Bind to Screen at `App/Containers/Demo/Demo.Screen.js`
